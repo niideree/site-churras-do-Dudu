@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda 2026 | Eduardo Churrasqueiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-agenda">
+
+<nav>
+    <div class="logo">EDUARDO CHURRASQUEIRO</div>
+    <ul>
+        <li><a href="index.html">Voltar ao site</a></li>
+    </ul>
+</nav>
+
+<section class="agenda-page">
+    <h1>Agenda 2026</h1>
+    <p>Escolha um mês para abrir em tela cheia e selecionar o dia desejado.</p>
+    <div id="calendario" class="calendario-ano"></div>
+</section>
+
+<div id="modalMes" class="modal-mes">
+    <div class="modal-content">
+        <button id="fecharModal" class="fechar-modal">×</button>
+        <h2 id="tituloMes"></h2>
+        <div class="legenda-agenda">
+            <span><b class="legenda-verde"></b> Disponível</span>
+            <span><b class="legenda-vermelha"></b> Não disponível</span>
+        </div>
+        <div id="diasModal" class="dias-modal"></div>
+    </div>
+</div>
+
+<div id="notify" class="notify">Essa data não está disponível!</div>
+
+<script>
+    /*
+        ALTERE AQUI AS DATAS DISPONÍVEIS.
+        Tudo que estiver nessa lista ficará com linha VERDE e irá para o agendamento.
+        Tudo que não estiver na lista ficará com linha VERMELHA e mostrará aviso.
+        Formato: "2026-MM-DD"
+    */
+    const datasDisponiveis = [
+        "2026-01-10", "2026-01-18",
+        "2026-02-07", "2026-02-21",
+        "2026-03-14",
+        "2026-04-11",
+        "2026-05-09",
+        "2026-06-13",
+        "2026-07-18",
+        "2026-08-15",
+        "2026-09-12",
+        "2026-10-17",
+        "2026-11-21",
+        "2026-12-12"
+    ];
+
+    const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    const diasSemana = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+    const calendario = document.getElementById("calendario");
+    const modalMes = document.getElementById("modalMes");
+    const tituloMes = document.getElementById("tituloMes");
+    const diasModal = document.getElementById("diasModal");
+    const fecharModal = document.getElementById("fecharModal");
+    const notify = document.getElementById("notify");
+
+    function mostrarNotify() {
+        notify.classList.add("show");
+        setTimeout(() => notify.classList.remove("show"), 2200);
+    }
+
+    function dataTexto(mes, dia) {
+        return `2026-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
+    }
+
+    function criarMiniCalendario(mes) {
+        const card = document.createElement("div");
+        card.className = "mes-mini";
+
+        const titulo = document.createElement("h2");
+        titulo.textContent = meses[mes];
+        card.appendChild(titulo);
+
+        const semana = document.createElement("div");
+        semana.className = "semana-mini";
+        diasSemana.forEach(dia => {
+            const span = document.createElement("span");
+            span.textContent = dia;
+            semana.appendChild(span);
+        });
+        card.appendChild(semana);
+
+        const dias = document.createElement("div");
+        dias.className = "dias-mini";
+
+        const primeiroDia = new Date(2026, mes, 1).getDay();
+        const totalDias = new Date(2026, mes + 1, 0).getDate();
+
+        for (let i = 0; i < primeiroDia; i++) {
+            const vazio = document.createElement("span");
+            vazio.className = "dia-vazio";
+            dias.appendChild(vazio);
+        }
+
+        for (let dia = 1; dia <= totalDias; dia++) {
+            const span = document.createElement("span");
+            span.textContent = dia;
+            span.className = datasDisponiveis.includes(dataTexto(mes, dia)) ? "mini-disponivel" : "mini-indisponivel";
+            dias.appendChild(span);
+        }
+
+        card.appendChild(dias);
+        card.addEventListener("click", () => abrirMes(mes));
+        calendario.appendChild(card);
+    }
+
+    function abrirMes(mes) {
+        tituloMes.textContent = `${meses[mes]} 2026`;
+        diasModal.innerHTML = "";
+
+        diasSemana.forEach(dia => {
+            const span = document.createElement("span");
+            span.className = "dia-semana-modal";
+            span.textContent = dia;
+            diasModal.appendChild(span);
+        });
+
+        const primeiroDia = new Date(2026, mes, 1).getDay();
+        const totalDias = new Date(2026, mes + 1, 0).getDate();
+
+        for (let i = 0; i < primeiroDia; i++) {
+            const vazio = document.createElement("button");
+            vazio.className = "dia-modal vazio";
+            diasModal.appendChild(vazio);
+        }
+
+        for (let dia = 1; dia <= totalDias; dia++) {
+            const botao = document.createElement("button");
+            const dataFormatada = dataTexto(mes, dia);
+            const disponivel = datasDisponiveis.includes(dataFormatada);
+
+            botao.className = disponivel ? "dia-modal disponivel" : "dia-modal indisponivel";
+            botao.textContent = dia;
+
+            botao.addEventListener("click", () => {
+                if (disponivel) {
+                    window.location.href = `agendamento.html?data=${dataFormatada}`;
+                } else {
+                    mostrarNotify();
+                }
+            });
+
+            diasModal.appendChild(botao);
+        }
+
+        modalMes.classList.add("ativo");
+    }
+
+    fecharModal.addEventListener("click", () => modalMes.classList.remove("ativo"));
+    modalMes.addEventListener("click", e => {
+        if (e.target === modalMes) modalMes.classList.remove("ativo");
+    });
+
+    for (let mes = 0; mes < 12; mes++) criarMiniCalendario(mes);
+</script>
+
+</body>
+</html>
