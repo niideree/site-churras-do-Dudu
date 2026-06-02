@@ -704,33 +704,47 @@ footer {
 
 /* Responsividade */
 @media (max-width: 768px) {
+
     body {
-        padding-top: 120px;
+        padding-top: 130px;
     }
 
     nav {
-        padding: 15px 20px;
+        padding: 15px;
         flex-direction: column;
-        gap: 15px;
-    }
-
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 12px;
     }
 
+    .logo {
+        text-align: center;
+    }
+
+    nav ul {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+
     .hero-text h1 {
-        font-size: 2.1rem;
+        font-size: 2rem;
     }
 
     .hero-text h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
     }
 
     .container,
     .bg-dark .container {
-        padding: 60px 6%;
+        padding: 60px 5%;
     }
 
     .sobre-content {
@@ -741,29 +755,110 @@ footer {
     .foto-perfil {
         width: 100%;
         max-width: 300px;
-        height: 400px;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+
+    .grid-galeria {
+        grid-template-columns: 1fr;
+    }
+
+    .funcionarios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .funcionarios-lista {
+        grid-template-columns: 1fr;
+    }
+
+    .calendario-ano {
+        grid-template-columns: 1fr;
     }
 
     .modal-content {
-        padding: 26px 18px;
+        padding: 20px;
     }
 
     .modal-content h2 {
-        font-size: 1.6rem;
-        padding-right: 45px;
+        font-size: 1.5rem;
+        padding-right: 40px;
     }
 
     .dias-modal {
-        gap: 7px;
+        gap: 6px;
     }
 
     .dia-modal {
-        height: 48px;
-        font-size: 0.95rem;
-        border-radius: 12px;
+        height: 50px;
+        font-size: 0.9rem;
     }
 
     .agendamento-card {
-        padding: 25px;
+        padding: 25px 20px;
+    }
+
+    .contato-info {
+        font-size: 1rem;
+    }
+
+    .btn-whatsapp {
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body {
+        padding-top: 150px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .agenda-page h1 {
+        font-size: 2rem;
+    }
+
+    .dia-modal {
+        height: 42px;
+        font-size: 0.8rem;
+    }
+
+    .agendamento-card {
+        padding: 15px;
+    }
+
+    .agendamento-card input,
+    .agendamento-card textarea {
+        font-size: 16px;
+    }
+
+    .notify {
+        left: 15px;
+        right: 15px;
+        top: 160px;
+        text-align: center;
+    }
+
+    .funcionario-item {
+        flex-direction: column;
+        text-align: center;
     }
 }
