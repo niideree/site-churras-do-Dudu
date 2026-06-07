@@ -121,6 +121,7 @@ h2 {
 .section-desc,
 .center {
     text-align: center;
+    font-size: 1.2rem;
 }
 
 /* Sobre */
@@ -149,6 +150,7 @@ h2 {
 .texto p {
     margin-bottom: 20px;
     line-height: 1.7;
+    font-size: 1.2rem;
 }
 
 /* Galeria */
@@ -243,14 +245,14 @@ h2 {
     background: #272727;
     border-radius: 50px;
     padding: 8px 16px;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: #f4c542;
     margin-bottom: 18px;
 }
 
 .funcionario-card p {
     color: #bfbfbf;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.6;
 }
 
@@ -315,20 +317,20 @@ h2 {
 
 .funcionario-info h3 {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 6px;
 }
 
 .funcionario-info span {
     color: #bdbdbd;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 footer {
     text-align: center;
     padding: 20px;
     background: #000;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #555;
 }
 
@@ -421,13 +423,13 @@ footer {
 
 .semana-mini span {
     color: #d4a017;
-    font-size: 0.72rem;
+    font-size: 0.95rem;
     font-weight: bold;
 }
 
 .dias-mini span {
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.95rem;
     padding: 6px 0;
     border-radius: 6px;
     position: relative;
@@ -526,7 +528,7 @@ footer {
     text-align: center;
     color: #d4a017;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .dia-modal {
@@ -702,6 +704,94 @@ footer {
     color: #fff;
 }
 
+/* Avaliações */
+.avaliacoes-desc {
+    margin-bottom: 50px;
+}
+
+.avaliacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.avaliacao-card {
+    background: linear-gradient(145deg, #1a1a1a, #141414);
+    border: 1px solid #2a2a2a;
+    border-radius: 24px;
+    padding: 30px;
+    transition: 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.avaliacao-card::before {
+    content: "\201C";
+    position: absolute;
+    top: 10px;
+    right: 22px;
+    font-size: 6rem;
+    color: #d4a017;
+    opacity: 0.12;
+    line-height: 1;
+    font-family: Georgia, serif;
+}
+
+.avaliacao-card:hover {
+    transform: translateY(-6px);
+    border-color: #d4a017;
+    box-shadow: 0 15px 40px rgba(212,160,23,0.15);
+}
+
+.avaliacao-estrelas {
+    color: #d4a017;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.avaliacao-texto {
+    color: #cfcfcf;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.avaliacao-autor {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid #2a2a2a;
+    padding-top: 18px;
+}
+
+.avaliacao-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4a017, #f4c542);
+    color: #111;
+    font-size: 0.95rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avaliacao-autor strong {
+    display: block;
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 3px;
+}
+
+.avaliacao-autor span {
+    color: #888;
+    font-size: 0.97rem;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
 
@@ -727,7 +817,7 @@ footer {
     }
 
     nav ul li a {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .hero-text h1 {
@@ -771,6 +861,10 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .avaliacoes-grid {
+        grid-template-columns: 1fr;
+    }
+
     .calendario-ano {
         grid-template-columns: 1fr;
     }
@@ -790,7 +884,7 @@ footer {
 
     .dia-modal {
         height: 50px;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .agendamento-card {
@@ -819,11 +913,11 @@ footer {
     }
 
     .hero-text h2 {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .hero-text p {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .btn {
@@ -838,7 +932,7 @@ footer {
 
     .dia-modal {
         height: 42px;
-        font-size: 0.8rem;
+        font-size: 0.92rem;
     }
 
     .agendamento-card {
